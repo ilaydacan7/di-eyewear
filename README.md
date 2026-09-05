@@ -45,12 +45,12 @@ backend/      → Express API
 ## ⚙️ Kurulum
 
 ```bash
-git clone https://github.com/ilaydacan7/G-zl-k-sitesi.git
-cd G-zl-k-sitesi
+git clone https://github.com/ilaydacan7/di-eyewear.git
+cd di-eyewear
 npm install
 ```
 
-`.env.example` dosyasını `.env` olarak oluşturup gerekli değişkenleri doldurun.
+`.env.example` dosyasını `.env` olarak oluşturup gerekli environment değişkenlerini doldurun.
 
 ```bash
 npm run dev:all
