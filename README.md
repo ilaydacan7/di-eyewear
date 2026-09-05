@@ -1,102 +1,72 @@
-# D&I Eyewear - Gozluk Sitesi
+# 🕶️ D&I Eyewear
 
-Modern bir gozluk e-ticaret projesi. On yuz tarafinda Vite + TypeScript, arka planda Express + PostgreSQL kullanir.
+Modern ve responsive bir **gözlük e-ticaret web uygulaması**.
 
-## Sistem mimarisi (tablosuz ozet)
+Frontend tarafında **Vite + TypeScript**, backend tarafında **Node.js + Express** ve veritabanı olarak **PostgreSQL** kullanılmıştır.
 
-Uygulama **istemci–sunucu** modelindedir. Tarayicida calisan istemci, HTTP uzerinden Express API ile konusur; kalici veri **PostgreSQL** uzerindedir.
+## ✨ Özellikler
 
-**On yuz:** Kaynak kod **TypeScript** ile yazilir; derleme ve gelistirme sunucusu **Vite** kullanilir. Bu sayede statik tip denetimi, daha guvenli refaktor ve IDE destegi saglanir. **React**, footer gibi bolumlerde `mount` ile **parca (island)** olarak kullanilir; ana etkilesim akisi buyuk olcude TypeScript ile DOM uzerinden yurutulur. Raporunuzda yalnizca “React SPA” demek yerine **“TypeScript tabanli istemci (Vite); React secili modullerde”** demek teknik olarak daha dogrudur ve projeyi bozmaz.
+* 👤 Kullanıcı kayıt, giriş ve şifre sıfırlama
+* 🛒 Ürün listeleme ve sepet yönetimi
+* 📦 Sipariş ve hesap yönetimi
+* ❤️ Favoriler
+* 🔐 Admin paneli
+* 📝 Ürün ve içerik yönetimi
+* 📧 E-posta işlemleri
 
-**Arka yuz:** **Node.js** + **Express** REST API; kimlik, sepet/ siparis durumu, admin islemleri vb.
+## 🛠️ Teknolojiler
 
-## Hukuki moduller (KVKK, cerez, mesafeli satis) — neden gerekli?
+**Frontend:** TypeScript, Vite, React, HTML, CSS
+**Backend:** Node.js, Express.js, REST API
+**Database:** PostgreSQL
+**Tools:** Git, GitHub, dotenv, Nodemailer
 
-- **KVKK (aydinlatma metni):** Kisisel veri (uye kaydi, siparis, iletisim) islenmeden once kullanicinin **hangi verinin hangi amacla islendigini** bilmesi ve hukuki dayanagin aciklanmasi gerekir.
-- **Cerez politikasi:** Oturum, tercih veya analitik amacli cerez/ benzeri teknolojiler kullaniliyorsa **ne icin kullanildigi ve nasil yonetilecegi** seffaf sekilde bildirilmelidir.
-- **Mesafeli satis sozlesmesi / on bilgilendirme:** Mesafeli satislarda (internet magazasi) tuketicinin **cayma, iade, odeme, teslimat** gibi haklari sozlesme ve on bilgilendirme ile duzenlenir; odeme oncesinde **onay** istenmesi beklenir (projede odeme modalinda ilgili onay kutusu vardir).
-
-**Projede durum:** Footer’da kurumsal baglantilar (icerik henuz yer tutucu) ve admin **CMS → Kurumsal sayfalar** ile uzun metinler saklanabilir; canli ortamda KVKK / cerez / mesafeli satis metinleri avukat veya uyum ekibiyle netlestirilmelidir.
-
-## Ozellikler
-
-- Kullanici kayit / giris / sifre sifirlama akisi
-- Hesap paneli (siparis, adres, iade, destek, favori, para puan)
-- Admin girisi ve temel yonetim panelleri
-- Vite proxy ile `/api` isteklerini backend'e yonlendirme
-
-## Teknolojiler
-
-- Frontend: `Vite`, `TypeScript` (secili parcalarda `React`)
-- Backend: `Node.js`, `Express`
-- Veritabani: `PostgreSQL` (`pg`)
-- Diger: `dotenv`, `cors`, `nodemailer`, `concurrently`
-
-## Proje Yapisi
+## 🏗️ Mimari
 
 ```text
-.
-|-- src/              # frontend kaynak kodu
-|-- public/           # statik dosyalar ve gorseller
-|-- backend/          # Express API
-|-- .env.example      # ornek ortam degiskenleri
-|-- vite.config.ts    # Vite ayarlari
-|-- package.json      # scriptler ve bagimliliklar
+Frontend
+   ↓
+REST API
+   ↓
+Node.js + Express
+   ↓
+PostgreSQL
 ```
 
-## Kurulum
+## 📁 Proje Yapısı
 
-1) Node.js 20+ kurulu olmali.  
-2) Bagimliliklari yukleyin:
+```text
+src/          → Frontend
+public/       → Görseller ve statik dosyalar
+backend/      → Express API
+.env.example  → Environment değişkenleri
+```
+
+## ⚙️ Kurulum
 
 ```bash
+git clone https://github.com/ilaydacan7/G-zl-k-sitesi.git
+cd G-zl-k-sitesi
 npm install
 ```
 
-3) Ortam degiskenlerini hazirlayin:
+`.env.example` dosyasını `.env` olarak oluşturup gerekli değişkenleri doldurun.
 
 ```bash
-copy .env.example .env
+npm run dev:all
 ```
 
-4) `.env` icinde ozellikle su alanlari doldurun:
+## 🔐 Güvenlik
 
-- `DATABASE_URL`
-- `ADMIN_EMAIL`
-- `ADMIN_PASSWORD`
-- `ADMIN_SESSION_SECRET`
-- Mail ayarlari (`SMTP_*`) gerekiyorsa
+* Environment variables ile hassas bilgilerin korunması
+* Admin session güvenliği
+* CORS yapılandırması
+* Veritabanı bağlantısının güvenli şekilde yönetilmesi
 
-## Gelistirme Komutlari
+## 👩‍💻 Developer
 
-```bash
-npm run dev        # Sadece Vite (http://localhost:5173)
-npm run dev:api    # Sadece API  (http://localhost:4000)
-npm run dev:all    # Vite + API birlikte
-npm run dev:fresh  # Portlari temizleyip Vite + API baslatir
-```
+**İlayda Can**
+Software Engineering Student | Full-Stack / Backend / QA
 
-Yardimci komutlar:
+[GitHub](https://github.com/ilaydacan7)
 
-```bash
-npm run ports:free
-npm run open:site
-npm run open:api
-```
-
-## Uretim Build
-
-```bash
-npm run build
-npm run preview
-```
-
-## Guvenlik Notu
-
-- `.env` dosyasini kesinlikle repoya eklemeyin.
-- Sadece `.env.example` repoda tutulmalidir.
-- Uretimde guclu bir `ADMIN_SESSION_SECRET` kullanin.
-
-## Lisans
-
-Bu proje kisisel / egitsel kullanim amacli hazirlanmistir.
